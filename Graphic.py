@@ -24,6 +24,7 @@ class Graphic:
         self.x = x * 20
         self.y = y * 20
         self.game = game
+        self.pause = False
 
     def end(self):
         self.canvas.destroy()
@@ -64,6 +65,9 @@ class Graphic:
         if self.game.snake.direction != 2:
             self.game.snake.change_direction(3)
 
+    def toggle_pause(self, event):
+        self.pause = not self.pause
+
     def init_graphic(self, placex, placey):
         self.canvas = Canvas(self.root, height=self.y, width=self.x)
         self.canvas.focus()
@@ -82,6 +86,8 @@ class Graphic:
         self.root.bind("<Left>", self.left)
         self.root.bind("<Up>", self.up)
         self.root.bind("<Down>", self.down)
+        self.root.bind("<Escape>", self.toggle_pause)
+
 
     def update_graphic(self):
         self.canvas.delete(ALL)
@@ -99,3 +105,4 @@ class Graphic:
         self.root.bind("<Left>", self.left)
         self.root.bind("<Up>", self.up)
         self.root.bind("<Down>", self.down)
+        self.root.bind("<Escape>", self.toggle_pause)

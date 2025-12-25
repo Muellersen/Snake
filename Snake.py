@@ -49,6 +49,11 @@ def start_game():
     graphic = Graphic(34, 34, game, root)
     graphic.init_graphic(320, 20)
     while True:
+        while graphic.pause:
+            graphic.update_graphic()
+            graphic.root.update_idletasks()
+            graphic.root.update()
+            
         graphic.root.after(50)
         graphic.game.update_field()
         graphic.game.found_piece()
